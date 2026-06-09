@@ -1,0 +1,33 @@
+﻿<Window x:Class="EjercicioPropuesto1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EjercicioPropuesto1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <GroupBox Header="INFORMACION GENERAL" Margin="48,10,44,232"/>
+        <Label Content="PERSONAL:" HorizontalAlignment="Left" Margin="75,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.274,0.834"/>
+        <Label Content="CODIGO:" HorizontalAlignment="Left" Margin="400,30,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Margin="159,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbCodigo" HorizontalAlignment="Left" Margin="477,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Aportaciones:" HorizontalAlignment="Left" Margin="48,61,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbFonavi" Content="Fonavi (8%)" HorizontalAlignment="Left" Margin="73,92,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbImpRenta" Content="IMP. RENTA (5%)" HorizontalAlignment="Left" Margin="75,124,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbAFP" Content="A.F.P (12%)" HorizontalAlignment="Left" Margin="200,92,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnCalcular" Content="CALCULAR" HorizontalAlignment="Left" Margin="477,139,0,0" VerticalAlignment="Top" Width="81" Height="29" Click="btnCalcular_Click"/>
+        <Label Content="INGRESO: " HorizontalAlignment="Left" Margin="89,163,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbIngreso" HorizontalAlignment="Left" Margin="159,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <GroupBox Header="RESULTADOS" Margin="48,236,44,56"/>
+        <Label x:Name="lbFonaviResultado" Content="" HorizontalAlignment="Left" Margin="146,261,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbImpRentaResultado" Content="" HorizontalAlignment="Left" Margin="146,289,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbAFPResultado" Content="" HorizontalAlignment="Left" Margin="146,318,0,0" VerticalAlignment="Top"/>
+        <Label Content="TOTAL A PAGAR:" HorizontalAlignment="Left" Margin="429,305,0,0" VerticalAlignment="Top"/>
+        <Label Content="FONAVI:" HorizontalAlignment="Left" Margin="60,261,0,0" VerticalAlignment="Top"/>
+        <Label Content="IMP. RENTA:" HorizontalAlignment="Left" Margin="60,287,0,0" VerticalAlignment="Top"/>
+        <Label Content="A.F.P:" HorizontalAlignment="Left" Margin="60,318,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbTotalaPagar" Content="" HorizontalAlignment="Left" Margin="549,305,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
