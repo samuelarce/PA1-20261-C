@@ -1,0 +1,24 @@
+﻿<Window x:Class="EjerciciosCB_RB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EjerciciosCB_RB"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <GroupBox Header="Control CheckBox" Margin="61,49,53,241"/>
+        <CheckBox x:Name="CheckColorTexto" Content="Cambiar Color de Texto" HorizontalAlignment="Left" Margin="107,115,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CheckColorFondo" Content="Cambiar Color de Fondo" HorizontalAlignment="Left" Margin="107,150,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CheckTipoLetra" Content="Cambiar Tipo de Letra" HorizontalAlignment="Left" Margin="107,79,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAplicar" Content="Aplicar" HorizontalAlignment="Left" Margin="494,87,0,0" VerticalAlignment="Top" Height="27" Width="84" Click="btnAplicar_Click"/>
+        <Label x:Name="lbResultado" Content="Uso Del Control CheckBox" HorizontalAlignment="Left" Margin="466,130,0,0" VerticalAlignment="Top" Width="154"/>
+        <GroupBox Header="Control RadioButton" Margin="61,217,53,74"/>
+        <RadioButton x:Name="rbTipodeLetra" Content="Cambiar Tipo de Letra" HorizontalAlignment="Left" Margin="107,261,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbColorTexto" Content="Cambiar Color de Texto" HorizontalAlignment="Left" Margin="107,292,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbColorFondo" Content="Cambiar Color de Fondo" HorizontalAlignment="Left" Margin="107,324,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAplicarRB" Content="Aplicar" HorizontalAlignment="Left" Margin="494,261,0,0" VerticalAlignment="Top" Width="84" Height="20" Click="btnAplicarRB_Click"/>
+        <Label x:Name="lbResultadoRB" Content="Uso Control RadioButton" HorizontalAlignment="Left" Margin="466,304,0,0" VerticalAlignment="Top" Width="154"/>
+
+    </Grid>
+</Window>
