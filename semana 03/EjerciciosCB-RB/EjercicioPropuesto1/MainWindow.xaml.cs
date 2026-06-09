@@ -23,7 +23,7 @@ namespace EjercicioPropuesto1
 
         private void btnCalcular_Click(object sender, RoutedEventArgs e)
         {
-            String nombre = ((TextBox)sender).Text;
+            string nombre = tbNombre.Text;
             int codigo = tbCodigo.Text.Length;
             int ingreso = Int32.Parse(tbIngreso.Text);
             double lbFonaviResultado = 0;
@@ -42,8 +42,13 @@ namespace EjercicioPropuesto1
             {
                 lbAFPResultado = ingreso * 0.12;
             }
-            lbTotalaPagar 
+            lbTotalaPagar = ingreso - (lbFonaviResultado + lbImpRentaResultado + lbAFPResultado);
+            this.lbFonaviResultado.Content = lbFonaviResultado;
+            this.lbImpRentaResultado.Content = lbImpRentaResultado;
+            this.lbAFPResultado.Content = lbAFPResultado;
+            this.lbTotalaPagar.Content = lbTotalaPagar;
         }
+    }
 
     }
-    }
+    
