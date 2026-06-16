@@ -1,0 +1,44 @@
+﻿<Window x:Class="InformaionClientes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InformaionClientes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Cliente: " HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbCliente" HorizontalAlignment="Left" Margin="119,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.355,-1.479"/>
+        <Label Content="Nro.Cel: " HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNcelular" HorizontalAlignment="Left" Margin="474,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.355,-1.479"/>
+        <Label Content="Cantidad: " HorizontalAlignment="Left" Margin="61,66,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPaginas" HorizontalAlignment="Left" Margin="129,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Páginas" HorizontalAlignment="Left" Margin="268,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tarifa: " HorizontalAlignment="Left" Margin="61,106,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbEscolar" Content="Escolar" HorizontalAlignment="Left" Margin="147,112,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbUniversitario" Content="Universitario" HorizontalAlignment="Left" Margin="233,112,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Organizacion" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnEstadistica" Content="Estadistica" HorizontalAlignment="Left" Margin="543,109,0,0" VerticalAlignment="Top"/>
+        <Grid Margin="10,160,10,118">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="158*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="lbCliente" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,625,0" Grid.ColumnSpan="2" SelectionChanged="lbCliente_SelectionChanged"/>
+            <ListBox x:Name="lbNcelular" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="78,10,487,0" Grid.Column="1"/>
+            <ListBox x:Name="lbPaginas" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="216,10,318,0" Grid.Column="1"/>
+            <ListBox x:Name="lbTarifa" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="385,10,149,0" Grid.Column="1"/>
+        </Grid>
+        <ListBox x:Name="lbImporte" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="647,172,10,118"/>
+        <Grid Margin="44,330,68,19">
+            <Label Content="Nro. Impre. Escolares:" HorizontalAlignment="Left" Margin="7,14,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbImpEscolares" HorizontalAlignment="Left" Margin="160,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Nro. Impre. Universitarios:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbImpreUniversitarios" HorizontalAlignment="Left" Margin="160,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbImpreOrganizacionales" HorizontalAlignment="Left" Margin="542,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Nro. Impre. Organizacionales:" HorizontalAlignment="Left" Margin="374,14,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="btnRegistrar" Content="Registrar" HorizontalAlignment="Left" Margin="547,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.394,-0.359"/>
+
+    </Grid>
+</Window>

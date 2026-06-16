@@ -1,0 +1,32 @@
+﻿<Window x:Class="Ejemplo01.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ejemplo01"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Margin="18,0,10,340">
+            <StackPanel Margin="23,5,567,27" RenderTransformOrigin="0.5,0">
+                <TextBlock TextWrapping="Wrap" Text="APELLIDOS"/>
+                <TextBox x:Name="tbApellidos" TextWrapping="Wrap" Width="179"/>
+            </StackPanel>
+            <StackPanel Margin="370,5,230,27">
+                <TextBlock TextWrapping="Wrap" Text="Nombres"/>
+                <TextBox TextWrapping="Wrap" Width="165"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="18,99,22,273">
+            <StackPanel Margin="30,6,607,6">
+                <TextBlock TextWrapping="Wrap" Text="D.N.I."/>
+                <TextBox x:Name="tbDNI" TextWrapping="Wrap" Width="120"/>
+            </StackPanel>
+            <StackPanel Margin="337,0,160,20">
+                <TextBlock TextWrapping="Wrap" Text="DIRECCION"/>
+                <TextBox x:Name="tbDIRECCION" TextWrapping="Wrap" Width="231"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

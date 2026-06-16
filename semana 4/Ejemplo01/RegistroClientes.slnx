@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Ejemplo01/RegistroClientes.csproj" />
+  <Project Path="InformaionClientes/InformaionClientes.csproj" />
+</Solution>
