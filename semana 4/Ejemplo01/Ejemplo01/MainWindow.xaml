@@ -7,26 +7,91 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid Margin="18,0,10,340">
-            <StackPanel Margin="23,5,567,27" RenderTransformOrigin="0.5,0">
-                <TextBlock TextWrapping="Wrap" Text="APELLIDOS"/>
-                <TextBox x:Name="tbApellidos" TextWrapping="Wrap" Width="179"/>
-            </StackPanel>
-            <StackPanel Margin="370,5,230,27">
-                <TextBlock TextWrapping="Wrap" Text="Nombres"/>
-                <TextBox TextWrapping="Wrap" Width="165"/>
-            </StackPanel>
-        </Grid>
-        <Grid Margin="18,99,22,273">
-            <StackPanel Margin="30,6,607,6">
-                <TextBlock TextWrapping="Wrap" Text="D.N.I."/>
-                <TextBox x:Name="tbDNI" TextWrapping="Wrap" Width="120"/>
-            </StackPanel>
-            <StackPanel Margin="337,0,160,20">
-                <TextBlock TextWrapping="Wrap" Text="DIRECCION"/>
-                <TextBox x:Name="tbDIRECCION" TextWrapping="Wrap" Width="231"/>
-            </StackPanel>
-        </Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap" Text="Apellidos" FontWeight="Bold" FontSize="15"/>
+            <TextBox x:Name="txtApellidos" TextWrapping="Wrap" FontSize="15" Height="30"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <TextBlock TextWrapping="Wrap" Text="Nombres" FontSize="15" FontWeight="Bold"/>
+            <TextBox x:Name="txtNombres" TextWrapping="Wrap" Height="25" FontSize="15"/>
+        </StackPanel>
+    </Grid>
+    <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap" Text="DNI" FontSize="15" FontWeight="Bold"/>
+            <TextBox x:Name="txtDNI" TextWrapping="Wrap" FontSize="15" Height="30"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <TextBlock TextWrapping="Wrap" Text="Dirección" FontSize="15" FontWeight="Bold"/>
+            <TextBox x:Name="txtDireccion" TextWrapping="Wrap" FontSize="15" Height="30"/>
+        </StackPanel>
+    </Grid>
+    <Grid Grid.Row="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap" Text="Estado Civil" FontSize="15" FontWeight="Bold"/>
+            <ComboBox x:Name="cmbEstadoCivil">
+                <ComboBoxItem Content="Soltero(a)"/>
+                <ComboBoxItem Content="Casado(a)"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,10,5,10">
+            <Button x:Name="btnGrabar" Content="Grabar" Width="70" Click="btnGrabar_Click"/>
+            <Button x:Name="btnNuevo" Content="Nuevo" Margin="5,0,0,0" Width="70" Click="btnNuevo_Click"/>
+            <Button x:Name="btnEstadistica" Content="Estadisticas" Margin="5,0,0,0" Width="70" Click="btnEstadistica_Click"/>
+            <Button x:Name="btnSalir" Content="Salir" Margin="5,0,0,0" Width="70" Click="btnSalir_Click"/>
+        </StackPanel>
+    </Grid>
+    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Margin="0,10,0,10">
+        <ListView x:Name="lvClientes" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Apellidos" Width="250" DisplayMemberBinding="{Binding Apellidos}"/>
+                    <GridViewColumn Header="Nombres" Width="250" DisplayMemberBinding="{Binding Nombres}"/>
+                    <GridViewColumn Header="DNI" Width="80" DisplayMemberBinding="{Binding Dni}"/>
+                    <GridViewColumn Header="Dirección" Width="200" DisplayMemberBinding="{Binding Direccion}"/>
+                    <GridViewColumn Header="Estado Civil" Width="100" DisplayMemberBinding="{Binding EstadoCivil}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Border>
+    <Grid Grid.Row="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock TextWrapping="Wrap" Text="Solteros" FontSize="15" FontWeight="Bold"/>
+            <TextBox x:Name="txtSolteros" TextWrapping="Wrap" Width="120" FontSize="15" Height="30"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock TextWrapping="Wrap" Text="Casados" FontSize="15" FontWeight="Bold"/>
+            <TextBox x:Name="txtCasados" TextWrapping="Wrap" Width="120" Height="30" FontSize="15"/>
+        </StackPanel>
+    </Grid>
 
     </Grid>
 </Window>
