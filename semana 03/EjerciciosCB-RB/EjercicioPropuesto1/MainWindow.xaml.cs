@@ -24,7 +24,7 @@ namespace EjercicioPropuesto1
         private void btnCalcular_Click(object sender, RoutedEventArgs e)
         {
             string nombre = tbNombre.Text;
-            int codigo = tbCodigo.Text.Length;
+            string codigo = tbCodigo.Text;
             int ingreso = Int32.Parse(tbIngreso.Text);
             double lbFonaviResultado = 0;
             double lbImpRentaResultado = 0;
