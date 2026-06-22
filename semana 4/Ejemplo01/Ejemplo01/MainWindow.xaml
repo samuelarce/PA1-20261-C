@@ -52,7 +52,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <TextBlock TextWrapping="Wrap" Text="Estado Civil" FontSize="15" FontWeight="Bold"/>
-            <ComboBox x:Name="cmbEstadoCivil">
+            <ComboBox x:Name="cmbEstadoCivil" >
                 <ComboBoxItem Content="Soltero(a)"/>
                 <ComboBoxItem Content="Casado(a)"/>
             </ComboBox>
@@ -67,7 +67,7 @@
     <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Margin="0,10,0,10">
         <ListView x:Name="lvClientes" >
             <ListView.View>
-                <GridView>
+                <GridView AllowsColumnReorder="True">
                     <GridViewColumn Header="Apellidos" Width="250" DisplayMemberBinding="{Binding Apellidos}"/>
                     <GridViewColumn Header="Nombres" Width="250" DisplayMemberBinding="{Binding Nombres}"/>
                     <GridViewColumn Header="DNI" Width="80" DisplayMemberBinding="{Binding Dni}"/>
