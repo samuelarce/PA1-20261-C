@@ -25,5 +25,19 @@ namespace MenuPrincipal
         {
             this.Close();
         }
+<<<<<<< HEAD
+=======
+
+        // Implementación vacía para los CommandBindings referenciados en XAML
+        private void CommandBinding_nuevo(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommanbBindind_Abrir(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+>>>>>>> Menus y ejercicio temperatura
     }
 }

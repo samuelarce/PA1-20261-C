@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="EjercicioTemperatura/EjercicioTemperatura.csproj" Id="c900e812-0d91-44b0-a26d-bb190e277501" />
   <Project Path="Menucontextual/Menucontextual.csproj" />
   <Project Path="MenuPrincipal/MenuPrincipal.csproj" Id="b0f2a4d7-9fa2-4bee-a6a4-21b137c05375" />
+  <Project Path="VotosEjercicio/VotosEjercicio.csproj" Id="1f18e979-ce1a-4f69-a4e1-f2ffd818ecee" />
 </Solution>
