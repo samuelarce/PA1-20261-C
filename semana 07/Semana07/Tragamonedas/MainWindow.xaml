@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtNumero1" Grid.Column="1" VerticalAlignment="Center" Width="80" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" TextWrapping="Wrap" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0,5,0,5"/>
+            <TextBox x:Name="txtJugada1" Grid.Column="1" VerticalAlignment="Center" Width="80" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" TextWrapping="Wrap" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0,5,0,5"/>
             <TextBox x:Name="txtJugada2" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="80" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0,5,0,5"/>
             <TextBox x:Name="txtJugada3" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="80" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0,5,0,5"/>
         </Grid>
