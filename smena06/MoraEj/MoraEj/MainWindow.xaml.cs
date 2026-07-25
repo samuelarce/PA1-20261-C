@@ -48,8 +48,24 @@ namespace MoraEj
 
             if(FechaPago > FechaVencimiento)
             {
-                TimeSpan.
+                TimeSpan diferencia = FechaPago.Subtract(FechaVencimiento);
+
+                diasmora = (int)diferencia.TotalDays;
             }
+            TBDIASM.Text = diasmora.ToString();
+
+            double porcMora = diasmora * 0.5;
+
+            tbMoraPorc.Text = porcMora.ToString();
+
+            double monto = double.Parse(tbMonto.Text);
+            double moraSoles = porcMora * monto / 100;
+
+            tbMoraSoles.Text = moraSoles.ToString();
+
+            double totalPagar = monto + moraSoles;
+
+            tbMontoaPagar.Text = totalPagar.ToString();
 
 
         }
