@@ -7,56 +7,74 @@
         mc:Ignorable="d"
         Title="Tragamonedas_v2" Height="450" Width="900" MinWidth="700">
 
-    <Grid Margin="18">
+    <Grid Background="White" Margin="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>   <!-- Reloj -->
-            <RowDefinition Height="Auto"/>   <!-- Botón -->
-            <RowDefinition Height="*"/>      <!-- Imágenes y espacio -->
-            <RowDefinition Height="Auto"/>   <!-- Mensaje -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
 
-        <!-- Reloj (centrado en la columna principal) -->
-        <TextBlock x:Name="TxtReloj"
-                   Grid.Row="0" Grid.Column="0"
-                   FontSize="48" FontWeight="Bold"
-                   Background="#E6FFF5" Padding="14"
-                   Text="19:18:55"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!-- Encabezado: reloj grande centrado -->
+        <Border Grid.Row="0" HorizontalAlignment="Center" Padding="18" Margin="0,8,0,8" Background="#e0fff6" CornerRadius="4">
+            <Viewbox Stretch="Uniform" MaxHeight="120">
+                <TextBlock x:Name="TimerText" Text="19:18:55" FontSize="48" FontWeight="Bold" Foreground="#0b0b0b" FontFamily="Segoe UI"/>
+            </Viewbox>
+        </Border>
 
-        <!-- Botón iniciar -->
-        <Button x:Name="BtnIniciar" Grid.Row="1" Grid.Column="0"
-                Content="Iniciar Juego" Padding="8,6"
-                Margin="0,14" Width="160" HorizontalAlignment="Center"/>
-
-        <!-- Rodillos (tres imágenes) -->
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,18">
-            <Border Width="140" Height="140" Background="#FFF" CornerRadius="2" Margin="0,0,28,0">
-                <Image x:Name="Img1" Stretch="UniformToFill"/>
-            </Border>
-            <Border Width="140" Height="140" Background="#FFF" CornerRadius="2" Margin="0,0,28,0">
-                <Image x:Name="Img2" Stretch="UniformToFill"/>
-            </Border>
-            <Border Width="140" Height="140" Background="#FFF" CornerRadius="2">
-                <Image x:Name="Img3" Stretch="UniformToFill"/>
-            </Border>
+        <!-- Botón iniciar centrado -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,6">
+            <Button x:Name="StartButton" Content="Iniciar Juego" Padding="10,6" MinWidth="120" MinHeight="30" Click="StartButton_Click"/>
         </StackPanel>
 
-        <!-- Panel de puntaje (columna derecha, abarca filas 0..2) -->
-        <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8,20">
-            <TextBlock Text="Puntaje:" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
-            <Border Background="#FFE899" Padding="10" Margin="0,8" Width="100" HorizontalAlignment="Center">
-                <TextBlock x:Name="TxtPuntaje" Text="10" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
-            </Border>
-        </StackPanel>
+        <!-- Área principal: imágenes a la izquierda, puntaje a la derecha -->
+        <Grid Grid.Row="2" Margin="8,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- Mensaje resultado en la parte inferior -->
-        <TextBlock x:Name="TxtMensaje" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
-                   Background="#DFFFEF" Padding="12" FontSize="16" TextAlignment="Center"
-                   Text="PERDISTE, puntaje obtenido: 10" Margin="0,18,0,0"/>
+            <!-- Imágenes centradas y responsivas -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Viewbox Stretch="Uniform" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid Width="720" Height="200">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Cada casilla es un recuadro morado con un placeholder para la imagen -->
+                        <Border Grid.Column="0" Background="#2f0f4f" Margin="8" CornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Image x:Name="Img1" Stretch="Uniform" Margin="12" />
+                        </Border>
+
+                        <Border Grid.Column="1" Background="#2f0f4f" Margin="8" CornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Image x:Name="Img2" Stretch="Uniform" Margin="12" />
+                        </Border>
+
+                        <Border Grid.Column="2" Background="#2f0f4f" Margin="8" CornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Image x:Name="Img3" Stretch="Uniform" Margin="12" />
+                        </Border>
+                    </Grid>
+                </Viewbox>
+            </Grid>
+
+            <!-- Panel de puntaje -->
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Puntaje:" FontWeight="SemiBold" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                <Border Background="#ffec7a" Width="72" Height="72" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="ScoreText" Text="10" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Mensaje inferior -->
+        <Border Grid.Row="3" Background="#e0fff6" CornerRadius="3" Padding="12" Margin="30,12,30,12" HorizontalAlignment="Stretch">
+            <TextBlock x:Name="ResultText" Text="PERDISTE, puntaje obtenido: 10" FontWeight="Bold" FontSize="16" Foreground="#0d2b5b" TextAlignment="Center"/>
+        </Border>
     </Grid>
 </Window>
