@@ -1,0 +1,151 @@
+﻿<Window x:Class="BingoEjerc_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BingoEjerc_"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#F5F5F5" CornerRadius="8" Padding="15" Margin="0,0,10,0">
+            <StackPanel>
+                <TextBlock Text="JUEGO DEL BINGO" FontSize="18" FontWeight="Bold" 
+                           Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                <Button x:Name="btnNuevoJuego" Content="1. Generar Nueva Cartilla" Height="40" 
+                        FontSize="14" FontWeight="Bold" Background="#2196F3" Foreground="Black"
+                        Margin="0,0,0,10" Click="BtnNuevoJuego_Click"/>
+                <Button x:Name="btnSacarNumero" Content="2. Sacar Bolilla" Height="40" 
+                        FontSize="14" Foreground="Black"
+                        Click="BtnSacarNumero_Click" Background="#FF2991E3" FontWeight="Bold"/>
+
+                <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="5" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Bolilla Numero:" FontSize="12" FontWeight="Bold" Foreground="#7f8c8d" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="tbBolilla" Text="--" FontSize="42" FontWeight="Bold" 
+                                   Foreground="#E74C3C" HorizontalAlignment="Center" Margin="0,5,0,10"/>
+
+                        <TextBlock Text="Estado del Juego:" FontSize="12" FontWeight="Bold" Foreground="#7f8c8d"/>
+                        <TextBlock x:Name="tbEstado" Text="Presione 'Generar Nueva Cartilla' para reiniciar el juego." 
+                                   TextWrapping="Wrap" FontSize="14" Foreground="#2C3E50" Margin="0,5,0,0" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <UniformGrid Rows="6" Columns="5" Margin="0,0,0,10" Grid.RowSpan="2" >
+                <Border Background="#1E88E5" Margin="2" CornerRadius="4">
+                    <TextBlock Text="B" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="#1E88E5" Margin="2" CornerRadius="4">
+                    <TextBlock Text="I" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="#1E88E5" Margin="2" CornerRadius="4">
+                    <TextBlock Text="N" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="#1E88E5" Margin="2" CornerRadius="4">
+                    <TextBlock Text="G" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="#1E88E5" Margin="2" CornerRadius="4">
+                    <TextBlock Text="O" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt00" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt01" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt02" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt03" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt04" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt10" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt11" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt12" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt13" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt14" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+
+
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt20" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt21" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="Gold" Margin="2">
+                    <TextBlock x:Name="txt22" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Text="FREE"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt23" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt24" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+
+
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt30" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt31" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt32" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt33" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt34" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+
+
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt40" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt41" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border  BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt42" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt43" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                <Border BorderBrush="#BDC3C7" BorderThickness="1" Background="White" Margin="2">
+                    <TextBlock x:Name="txt44" Width="50" Height="25" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Border>
+                
+            </UniformGrid>
+        </Grid>
+    </Grid>
+</Window>
