@@ -60,31 +60,31 @@ namespace BingoEjerc_
                 txt44.Text = "66";
         
     
-             misCasillas.Add(new Casillas(11));
-                misCasillas.Add(new Casillas(25));
-                misCasillas.Add(new Casillas(42));
-                misCasillas.Add(new Casillas(49));
-                misCasillas.Add(new Casillas(63));
-                misCasillas.Add(new Casillas(9));
-                misCasillas.Add(new Casillas(23));
-                misCasillas.Add(new Casillas(31));
-                misCasillas.Add(new Casillas(58));
-                misCasillas.Add(new Casillas(68));
-                misCasillas.Add(new Casillas(4));
-                misCasillas.Add(new Casillas(29));
-                misCasillas.Add(new Casillas(0, esEspacioLibre: true) { EstaMarcada = true });
-                misCasillas.Add(new Casillas(54));
-                misCasillas.Add(new Casillas(99));
-                misCasillas.Add(new Casillas(3));
+                misCasillas.Add(new Casillas(14));
+                misCasillas.Add(new Casillas(20));
+                misCasillas.Add(new Casillas(32));
+                misCasillas.Add(new Casillas(52));
+                misCasillas.Add(new Casillas(71));
+                misCasillas.Add(new Casillas(10));
                 misCasillas.Add(new Casillas(27));
-                misCasillas.Add(new Casillas(45));
+                misCasillas.Add(new Casillas(42));
+                misCasillas.Add(new Casillas(55));
+                misCasillas.Add(new Casillas(64));
+                misCasillas.Add(new Casillas(7));
+                misCasillas.Add(new Casillas(23));
+                misCasillas.Add(new Casillas(0, esEspacioLibre: true) { EstaMarcada = true });
+                misCasillas.Add(new Casillas(58));
+                misCasillas.Add(new Casillas(69));
+                misCasillas.Add(new Casillas(11));
+                misCasillas.Add(new Casillas(28));
+                misCasillas.Add(new Casillas(34));
                 misCasillas.Add(new Casillas(56));
                 misCasillas.Add(new Casillas(72));
-                misCasillas.Add(new Casillas(19));
-                misCasillas.Add(new Casillas(43));
-                misCasillas.Add(new Casillas(50));
-                misCasillas.Add(new Casillas(61));
-                misCasillas.Add(new Casillas(75));
+                misCasillas.Add(new Casillas(15));
+                misCasillas.Add(new Casillas(25));
+                misCasillas.Add(new Casillas(33));
+                misCasillas.Add(new Casillas(53));
+                misCasillas.Add(new Casillas(66));
 
 
                 bombo.Clear();
@@ -235,46 +235,61 @@ namespace BingoEjerc_
 
                 string letra = LetraBingo(bolilla);
                 string bolillaFormateada = $"{letra}-{bolilla}";
-
+                int colInd = ObtenerIndiceColumna(letra);
                 tbBolilla.Text = bolillaFormateada;
-
-
-
                 bool encontrado = false;
-                foreach (var c in misCasillas)
+
+                if (colInd != -1)
                 {
-                    if (!c.EsEspacioLibre && c.Numero == bolilla)
+                    
+                    for (int fila = 0; fila < 5; fila++)
                     {
-                        c.EstaMarcada = true;
-                        encontrado = true;
+                        int indiceCasilla = colInd + (fila * 5);
+                        var casilla = misCasillas[indiceCasilla];
+
+                        if (!casilla.EsEspacioLibre && casilla.Numero == bolilla)
+                        {
+                            casilla.EstaMarcada = true;
+                            encontrado = true;
+                            break; 
+                        }
                     }
-                }
 
-                if (encontrado)
-                {
-                    PintarCasilla(bolilla);
-                    tbEstado.Text = $"¡El número {bolilla} está en tu cartilla!";
-                }
-                else
-                {
-                    tbEstado.Text = $"Bolilla {bolilla} sacada. No está en la cartilla.";
-                }
-
-                if (VerificarBingo())
-                {
-                    MessageBoxResult respuesta = MessageBox.Show(
-                        "¡BINGO!.\n¿Desea jugar nuevamente?",
-                        "¡Ganaste!",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Information);
-
-                    if (respuesta == MessageBoxResult.Yes)
+                    foreach (var c in misCasillas)
                     {
-                        BtnNuevoJuego_Click(sender, e);
+                        if (!c.EsEspacioLibre && c.Numero == bolilla)
+                        {
+                            c.EstaMarcada = true;
+                            encontrado = true;
+                        }
+                    }
+
+                    if (encontrado)
+                    {
+                        PintarCasilla(bolilla);
+                        tbEstado.Text = $"¡El número {bolilla} está en tu cartilla!";
                     }
                     else
                     {
-                        this.Close();
+                        tbEstado.Text = $"Bolilla {bolilla} sacada. No está en la cartilla.";
+                    }
+
+                    if (VerificarBingo())
+                    {
+                        MessageBoxResult respuesta = MessageBox.Show(
+                            "¡BINGO!.\n¿Desea jugar nuevamente?",
+                            "¡Ganaste!",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Information);
+
+                        if (respuesta == MessageBoxResult.Yes)
+                        {
+                            BtnNuevoJuego_Click(sender, e);
+                        }
+                        else
+                        {
+                            this.Close();
+                        }
                     }
                 }
             }
@@ -283,6 +298,24 @@ namespace BingoEjerc_
                 MessageBox.Show($"Ocurrió un error inesperado al sacar la bolilla: {ex.Message}", "Error de Ejecución", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+        private int ObtenerIndiceColumna(string letra)
+        {
+            switch (letra)
+            {
+                case "B": 
+                    return 0;
+                case "I":
+                    return 1;
+                case "N":
+                    return 2;
+                case "G":
+                    return 3;
+                case "O":
+                    return 4;
+                default: 
+                    return -1;
+            }
         }
 
 
