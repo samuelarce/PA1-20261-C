@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DesafioDataReader/DesafioDataReader.csproj" />
+  <Project Path="Productos/Productos.csproj" />
+</Solution>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="DesafioDataReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesafioDataReader"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid HorizontalAlignment="Center" Width="800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="164*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,59">
+            <TextBlock TextWrapping="Wrap" Text="Seleccionar País: " Width="142" Height="99" FontSize="15"/>
+            <ComboBox Width="143" Height="47"/>
+        </StackPanel>
+        <ListView Grid.Row="1" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <TabItem/>
+        </ListView>
+
+    </Grid>
+</Window>

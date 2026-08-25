@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AgregarCategoria/AgregarCategoria.csproj" Id="f67aa570-91bf-46de-a156-1104e5e72436" />
+  <Project Path="SqlCommandforinsert/SqlCommandforinsert.csproj" />
+</Solution>
