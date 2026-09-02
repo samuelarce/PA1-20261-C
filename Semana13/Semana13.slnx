@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="ActualizarStock/ActualizarStock.csproj" />
   <Project Path="ActulizarCategorias/ActulizarCategorias.csproj" />
 </Solution>
