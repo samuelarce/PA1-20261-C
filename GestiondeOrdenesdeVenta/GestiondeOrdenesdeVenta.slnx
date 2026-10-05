@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="GestiondeOrdenesdeVenta/GestiondeOrdenesdeVenta.csproj" />
+  <Project Path="OrdenesApplication/OrdenesApplication.csproj" Id="2f5b707f-e830-475d-a3dd-0c9f2946b157" />
+  <Project Path="OrdenesDomain/OrdenesDomain.csproj" Id="3985da28-885b-4495-8d50-f312032b4ad8" />
+  <Project Path="OrdenesInfraestructura/OrdenesInfraestructura.csproj" Id="f3759a24-30b4-46c3-8cf7-1a2ca3dd6123" />
+</Solution>
