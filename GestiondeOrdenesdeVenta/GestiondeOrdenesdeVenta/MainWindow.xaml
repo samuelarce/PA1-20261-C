@@ -14,7 +14,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Formulario: usa una cuadrícula con 3 columnas; los controles se estiran automáticamente -->
+            
             <Grid Grid.Row="0" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

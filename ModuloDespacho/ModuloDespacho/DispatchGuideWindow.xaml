@@ -1,0 +1,60 @@
+<Window x:Class="ModuloDespacho.DispatchGuideWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Guía de Despacho" Height="480" Width="760">
+    <Grid>
+        <DockPanel>
+            <Border DockPanel.Dock="Top" Background="#5D5FA3" Height="72">
+                <TextBlock Text="NORTHWIND TRADERS - Guía Oficial de Despacho" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12" FontSize="18" FontWeight="Bold"/>
+            </Border>
+
+            <StackPanel Margin="12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="DATOS DEL CLIENTE" FontWeight="Bold" />
+                        <TextBlock x:Name="GuideClientName" Margin="0,8,0,0" />
+                        <TextBlock x:Name="GuideClientCity" />
+                        <TextBlock x:Name="GuideClientPhone" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="EMPLEADO / TRANSPORTISTA" FontWeight="Bold" />
+                        <TextBlock x:Name="GuideEmployee" Margin="0,8,0,0" />
+                        <TextBlock x:Name="GuideTransport" />
+                        <TextBlock x:Name="GuideDeadline" />
+                    </StackPanel>
+                </Grid>
+
+                <Separator Margin="0,12" />
+
+                <DataGrid x:Name="GuideItemsGrid" AutoGenerateColumns="False" Height="220" IsReadOnly="True" CanUserDeleteRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="60" />
+                        <DataGridTextColumn Header="Producto" Binding="{Binding Producto}" Width="*" />
+                        <DataGridTextColumn Header="P. Unit." Binding="{Binding PrecioUnitario, StringFormat=C}" Width="100" />
+                        <DataGridTextColumn Header="Cant." Binding="{Binding Cantidad}" Width="60" />
+                        <DataGridTextColumn Header="Dto.%" Binding="{Binding Dto}" Width="60" />
+                        <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat=C}" Width="100" />
+                        <!-- Eliminado botón de acción: la guía final es de solo lectura -->
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DockPanel Margin="0,12,0,0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" DockPanel.Dock="Left">
+                        <TextBlock x:Name="GuideSubtotal" />
+                        <TextBlock x:Name="GuideFlete" />
+                        <TextBlock x:Name="GuideTotal" FontWeight="Bold" FontSize="16" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                        <Button x:Name="CloseGuideButton" Content="Cerrar guía" Width="100" Margin="0,8,0,0" Click="CloseGuideButton_Click" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

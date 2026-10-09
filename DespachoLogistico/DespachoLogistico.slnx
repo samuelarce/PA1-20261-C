@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DespachoAplic/DespachoAplic..csproj" />
+  <Project Path="DespachoDomain/DespachoDomain.csproj" />
+  <Project Path="DespachoInfraestructura/DespachoInfraestructura.csproj" />
+  <Project Path="DespachoLogistico/DespachoLogistico.csproj" />
+</Solution>

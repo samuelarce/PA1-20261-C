@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ModuloDepachoInfraestructura/ModuloDepachoInfraestructura.csproj" />
+  <Project Path="ModuloDespacho/ModuloDespacho.csproj" />
+  <Project Path="ModuloDespachoAplica/ModuloDespachoAplica.csproj" />
+  <Project Path="ModuloDespachoDomain/ModuloDespachoDomain.csproj" />
+</Solution>

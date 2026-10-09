@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>DespachoAplic_</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DespachoDomain\DespachoDomain.csproj" />
+    <ProjectReference Include="..\DespachoInfraestructura\DespachoInfraestructura.csproj" />
+  </ItemGroup>
+
+</Project>
