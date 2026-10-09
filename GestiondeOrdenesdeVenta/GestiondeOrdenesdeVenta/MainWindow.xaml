@@ -29,45 +29,25 @@
 
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="4">
                     <TextBlock Text="Order ID" />
-                    <TextBox x:Name="txtOrderId" HorizontalAlignment="Stretch" />
+                    <TextBox x:Name="txtOrderId" HorizontalAlignment="Stretch" IsReadOnly="True" />
                 </StackPanel>
 
                 <StackPanel Grid.Row="0" Grid.Column="1" Margin="4">
                     <TextBlock Text="Cliente" />
-                    <ComboBox x:Name="cboCliente" HorizontalAlignment="Stretch">
-                        <ComboBoxItem Content="Ana Trujillo Emparedados y Helados"/>
-                        <ComboBoxItem Content="Rattlesnake Canyon Grocery"/>
-                        <ComboBoxItem Content="Bon app"/>
-                        <ComboBoxItem Content="Richter Supermarkt"/>
-                        <ComboBoxItem Content="Simons Bistro"/>
-                        <ComboBoxItem Content="Pericles Comidas Clasicas"/>
-                        <ComboBoxItem Content="Ernst Handel"/>
-                        <ComboBoxItem Content="LILA-Supermercados"/>
-                        <ComboBoxItem Content="Tortuga restaurante"/>
-                        <ComboBoxItem Content="Queen Cozinha"/>
-                        <ComboBoxItem Content="Drachenblut Delikatessen"/>
-                        <ComboBoxItem Content="White Clover Markets"/>
-                    </ComboBox>
+                    <ComboBox x:Name="cboCliente" HorizontalAlignment="Stretch" />
                 </StackPanel>
 
                 <StackPanel Grid.Row="0" Grid.Column="2" Margin="4">
                     <TextBlock Text="Empleado" />
-                    <ComboBox x:Name="cboEmpleado" HorizontalAlignment="Stretch">
-                        <ComboBoxItem Content="Janet Leverling"/>
-                        <ComboBoxItem Content="Nancy Davolio"/>
-                        <ComboBoxItem Content="Margaret Peacock"/>
-                        <ComboBoxItem Content="Laura Callahart"/>
-                        <ComboBoxItem Content="Robert King"/>
-                        <ComboBoxItem Content="Andrew Fuller"/>
-                    </ComboBox>
+                    <ComboBox x:Name="cboEmpleado" HorizontalAlignment="Stretch" />
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Grid.Column="0" Margin="4">
                     <TextBlock Text="Transportista (ShipVia)" />
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <RadioButton x:Name="rbSpeedy" Content="Speedy Express" GroupName="TransportistaGroup" Margin="0,0,10,0"/>
-                        <RadioButton x:Name="rbUnited" Content="United Package" GroupName="TransportistaGroup" Margin="0,0,10,0"/>
-                        <RadioButton x:Name="rbFederal" Content="Federal Shipping" GroupName="TransportistaGroup"/>
+                        <RadioButton x:Name="rbSpeedy" Content="Speedy Express" GroupName="TransportistaGroup" Margin="0,0,10,0" />
+                        <RadioButton x:Name="rbUnited" Content="United Package" GroupName="TransportistaGroup" Margin="0,0,10,0" />
+                        <RadioButton x:Name="rbFederal" Content="Federal Shipping" GroupName="TransportistaGroup" />
                     </StackPanel>
                 </StackPanel>
 
@@ -94,14 +74,14 @@
 
             <!-- Botones -->
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="12">
-                <Button x:Name="btnGuardar" Content="Guardar" Margin="4" Padding="8,4"/>
-                <Button x:Name="btnActualizar" Content="Actualizar" Margin="4" Padding="8,4"/>
-                <Button x:Name="btnEliminar" Content="Eliminar" Margin="4" Padding="8,4"/>
-                <Button x:Name="btnLimpiar" Content="Limpiar" Margin="4" Padding="8,4"/>
+                <Button x:Name="btnGuardar" Content="Guardar" Margin="4" Padding="8,4" Click="BtnGuardar_Click"/>
+                <Button x:Name="btnActualizar" Content="Actualizar" Margin="4" Padding="8,4" Click="BtnActualizar_Click"/>
+                <Button x:Name="btnEliminar" Content="Eliminar" Margin="4" Padding="8,4" Click="BtnEliminar_Click"/>
+                <Button x:Name="btnLimpiar" Content="Limpiar" Margin="4" Padding="8,4" Click="BtnLimpiar_Click"/>
             </StackPanel>
 
             <!-- Lista: ocupa todo el espacio restante -->
-            <ListView x:Name="lvOrden" Grid.Row="2" Margin="8">
+            <ListView x:Name="lvOrden" Grid.Row="2" Margin="8" SelectionChanged="LvOrden_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <!-- Los anchos de columna se calculan en el code-behind para ocupar todo el ancho disponible -->

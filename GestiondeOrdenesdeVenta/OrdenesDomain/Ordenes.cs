@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GestiondeOrdenesdeVenta
+namespace OrdenesDomain
 {
     internal class Ordenes
     {
