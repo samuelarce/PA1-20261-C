@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using MainWindowViewModel.cs;
 using ModuloDespacho.Models;
 
 namespace ModuloDespacho.ViewModels
@@ -52,7 +53,6 @@ namespace ModuloDespacho.ViewModels
 
         // Commands placeholders
         public ICommand AuthorizeCommand { get; set; }
-        public ICommand RemoveItemCommand { get; set; }
 
         // Selected/bound values from the view
         public object? SelectedCustomer { get; set; }
@@ -77,15 +77,6 @@ namespace ModuloDespacho.ViewModels
                 }
                 RecalculateTotals();
             };
-
-            RemoveItemCommand = new RelayCommand(p =>
-            {
-                if (p is ItemRow it && Items.Contains(it))
-                {
-                    Items.Remove(it);
-                    RecalculateTotals();
-                }
-            }, p => p is ItemRow);
 
             AuthorizeCommand = new RelayCommand(p =>
             {

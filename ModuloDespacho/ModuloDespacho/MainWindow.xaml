@@ -31,14 +31,14 @@
                     </Ellipse>
                     <StackPanel Margin="8,0,0,0">
                         <TextBlock Text="Operador de despacho" FontWeight="Bold" />
-                        <TextBox x:Name="OperatorTextBox" Width="140" Margin="0,4,0,0" />
+                        <TextBox x:Name="OperatorTextBox" Width="140" Margin="0,4,0,0" Text="{Binding OperatorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                 </StackPanel>
 
                 <Separator />
 
                 <TextBlock Text="Clientes" FontWeight="Bold" Margin="0,6" />
-                <ListBox x:Name="ClientsListBox" SelectionChanged="ClientsListBox_SelectionChanged" MouseDoubleClick="ClientsListBox_MouseDoubleClick" DisplayMemberPath="CompanyName" SelectedValuePath="CustomerId" Height="228" />
+                <ListBox x:Name="ClientsListBox" SelectionChanged="ClientsListBox_SelectionChanged" MouseDoubleClick="ClientsListBox_MouseDoubleClick" DisplayMemberPath="CompanyName" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}" SelectedValuePath="CustomerId"  Height="228" />
             </StackPanel>
         </StackPanel>
 
@@ -47,18 +47,18 @@
             <DockPanel LastChildFill="False">
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock Text="Tipo de transportista" FontWeight="Bold" />
-                    <ComboBox x:Name="TransportTypeCombo" Margin="0,6,0,6" SelectionChanged="TransportTypeCombo_SelectionChanged" DisplayMemberPath="Name" />
+                    <ComboBox x:Name="TransportTypeCombo" Margin="0,6,0,6" SelectedItem="{Binding SelectedTransport, Mode=TwoWay}" SelectionChanged="TransportTypeCombo_SelectionChanged" DisplayMemberPath="Name" />
                     <TextBlock x:Name="SelectedTransportType" Margin="0,0,0,8" FontStyle="Italic" Foreground="#333" />
 
                     <TextBlock Text="Fecha límite de entrega" FontWeight="Bold" />
                     <StackPanel Orientation="Horizontal" Margin="0,6,0,6">
-                        <DatePicker x:Name="DeadlineDatePicker" SelectedDateChanged="DeadlineDatePicker_SelectedDateChanged" />
+                        <DatePicker x:Name="DeadlineDatePicker" SelectedDate="{Binding Deadline, Mode=TwoWay}" SelectedDateChanged="DeadlineDatePicker_SelectedDateChanged" />
                     </StackPanel>
                     <TextBlock x:Name="DeadlineSelectedText" Margin="0,6,0,0" FontStyle="Italic" Foreground="#333" />
                 </StackPanel>
 
                     <Button x:Name="AuthorizeButton" DockPanel.Dock="Bottom" Content="Autorizar despacho" Margin="0,8,0,0"
-                            Command="{Binding AuthorizeCommand}" />
+                            Command="{Binding AuthorizeCommand}"  />
             </DockPanel>
         </Border>
 
@@ -134,15 +134,6 @@
                             <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" />
                             <DataGridTextColumn Header="Dto" Binding="{Binding Dto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" />
                             <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat=C}" Width="120" IsReadOnly="True" />
-                            <DataGridTemplateColumn Header="Acción" Width="90">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Eliminar" Padding="4"
-                                                Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                                CommandParameter="{Binding}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

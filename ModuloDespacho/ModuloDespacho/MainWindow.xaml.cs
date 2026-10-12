@@ -25,26 +25,42 @@ namespace ModuloDespacho
         {
             InitializeComponent();
             _repo = new ModuloDepachoInfraestructura.NorthwindRepository();
-           
+            var vm = new ViewModels.MainWindowViewModel();
+            DataContext = vm;
+            ItemsDataGrid.ItemsSource = vm.Items;
+            AttachCollectionHandlers();
+
+            ClientsListBox.SetBinding(ListBox.SelectedItemProperty,
+                new Binding(nameof(vm.SelectedCustomer)) { Mode = BindingMode.TwoWay });
+            OperatorTextBox.SetBinding(TextBox.TextProperty,
+                new Binding(nameof(vm.OperatorName))
+                { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+            TransportTypeCombo.SetBinding(ComboBox.SelectedItemProperty,
+                new Binding(nameof(vm.SelectedTransport)) { Mode = BindingMode.TwoWay });
+            DeadlineDatePicker.SetBinding(DatePicker.SelectedDateProperty,
+                new Binding(nameof(vm.Deadline)) { Mode = BindingMode.TwoWay });
+            CatalogListBox.MouseDoubleClick -= CatalogListBox_MouseDoubleClick;
+            CatalogListBox.MouseDoubleClick += CatalogListBox_MouseDoubleClick;
+
             var timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = System.TimeSpan.FromSeconds(1);
             timer.Tick += (s, e) =>
             {
-                
+
                 if (this.FindName("SystemTimeText") is System.Windows.Controls.TextBlock sysText)
                     sysText.Text = System.DateTime.Now.ToString("HH:mm");
 
-               
+
                 var uptime = System.DateTime.Now - System.Diagnostics.Process.GetCurrentProcess().StartTime;
                 if (this.FindName("SessionDurationText") is System.Windows.Controls.TextBlock sessionText)
                     sessionText.Text = uptime.ToString("hh\\:mm\\:ss");
             };
             timer.Start();
 
-           
+
             try
             {
-                
+
                 var custRepo = new ModuloDepachoInfraestructura.Repositories.CustomerRepository();
                 var prodRepo = new ModuloDepachoInfraestructura.Repositories.ProductRepository();
                 var empRepo = new ModuloDepachoInfraestructura.Repositories.EmployeeRepository();
@@ -54,25 +70,24 @@ namespace ModuloDespacho
 
                 var products = prodRepo.GetAll();
                 CatalogListBox.ItemsSource = products;
-                CatalogListBox.MouseDoubleClick += CatalogListBox_MouseDoubleClick;
+
 
                 var employees = empRepo.GetAll();
 
-       
+
                 var transportRepo = new ModuloDepachoInfraestructura.Repositories.TransportRepository();
                 var transports = transportRepo.GetAll();
                 TransportTypeCombo.ItemsSource = transports;
                 TransportTypeCombo.DisplayMemberPath = "Name";
 
-                
-               
+
+
                 _employees = employees;
 
-              
-                var vm = new ViewModels.MainWindowViewModel();
-                this.DataContext = vm;
 
-                
+
+
+
                 ItemsDataGrid.ItemsSource = vm.Items;
 
                 vm.RequestAuthorize += (req) =>
@@ -83,8 +98,8 @@ namespace ModuloDespacho
                     win.ShowDialog();
                 };
 
-                
-                vm.RecalculateTotals();
+
+                UpdateTotal();
             }
             catch (Exception ex)
             {
@@ -119,69 +134,9 @@ namespace ModuloDespacho
             return null;
         }
 
-        private void ClientsListBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ClientsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (sender is System.Windows.Controls.ListBox lb)
-            {
-                var pt = e.GetPosition(lb);
-                var element = lb.InputHitTest(pt) as DependencyObject;
-                while (element != null && !(element is System.Windows.Controls.ListBoxItem))
-                    element = System.Windows.Media.VisualTreeHelper.GetParent(element);
-                if (element is System.Windows.Controls.ListBoxItem lbi)
-                {
-                    lbi.IsSelected = true;
-
-                    // Obtener el objeto cliente asociado y actualizar la UI igual que en SelectionChanged
-                    var obj = lb.ItemContainerGenerator.ItemFromContainer(lbi);
-                    if (obj is ModuloDepachoInfraestructura.CustomerDto cust)
-                    {
-                        // Asegurar que el ListBox realmente registra el SelectedItem
-                        try
-                        {
-                            lb.SelectedItem = cust;
-                            lb.Focus();
-                        }
-                        catch { }
-
-                        // SelectedClientLine control removed from XAML; UI updated via individual TextBlocks above the catalog
-
-                        if (this.FindName("ClientNameText") is System.Windows.Controls.TextBlock cn)
-                            cn.Text = cust.CompanyName;
-                        if (this.FindName("ClientCityText") is System.Windows.Controls.TextBlock cc)
-                            cc.Text = cust.City;
-                        if (this.FindName("ClientPhoneText") is System.Windows.Controls.TextBlock cp)
-                        {
-                            // Quitar caracteres no numéricos del teléfono y mostrar seguido
-                            var raw = cust.Phone ?? string.Empty;
-                            var cleaned = System.Text.RegularExpressions.Regex.Replace(raw, "\\D", "");
-                            cp.Text = cleaned;
-                        }
-
-                        try
-                        {
-                            var ordersRepo = new ModuloDepachoInfraestructura.Repositories.OrdersRepository();
-                            var lastItems = ordersRepo.GetLastOrderDetails(cust.CustomerId);
-                            if (lastItems != null && lastItems.Count > 0)
-                            {
-                                var vm = this.DataContext as ViewModels.MainWindowViewModel;
-                                if (vm != null)
-                                {
-                                    vm.Items.Clear();
-                                    foreach (var it in lastItems)
-                                    {
-                                        vm.Items.Add(new Models.ItemRow { Id = it.ProductId, Producto = it.ProductName, PrecioUnitario = it.UnitPrice, Cantidad = it.Quantity, Dto = (decimal)it.Discount * 100m });
-                                    }
-                                    vm.RecalculateTotals();
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error cargando pedidos previos: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                    }
-                }
-            }
+            // La selección y carga del cliente se realizan en SelectionChanged.
         }
 
         private void TransportTypeCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -235,17 +190,15 @@ namespace ModuloDespacho
                     {
                         var ordersRepo = new ModuloDepachoInfraestructura.Repositories.OrdersRepository();
                         var lastItems = ordersRepo.GetLastOrderDetails(cust.Id);
+                        _items.Clear();
                         if (lastItems != null && lastItems.Count > 0)
                         {
-                            _items.Clear();
                             foreach (var it in lastItems)
                             {
                                 _items.Add(new ItemRow { Id = it.ProductId, Producto = it.ProductName, PrecioUnitario = it.UnitPrice, Cantidad = it.Quantity, Dto = (decimal)it.Discount * 100m });
                             }
-                            ItemsDataGrid.ItemsSource = null;
-                            ItemsDataGrid.ItemsSource = _items;
-                            UpdateTotal();
                         }
+                        UpdateTotal();
                     }
                     catch (Exception ex)
                     {
@@ -280,7 +233,7 @@ namespace ModuloDespacho
 
         private void AuthorizeButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             var custInfo = ExtractCustomer(ClientsListBox.SelectedItem);
             if (custInfo == null)
             {
@@ -383,12 +336,12 @@ namespace ModuloDespacho
                 }
                 else
                 {
-                    flete = Math.Round(subtotal * 0.05m, 2);
+                    flete = Math.Round(subtotal * 0.10m, 2);
                 }
             }
             catch
             {
-                flete = Math.Round(subtotal * 0.05m, 2);
+                flete = Math.Round(subtotal * 0.10m, 2);
             }
 
             var win = new DispatchGuideWindow();
@@ -397,10 +350,12 @@ namespace ModuloDespacho
             win.ShowDialog();
         }
 
-       
+
         // ItemRow moved to ModuloDespacho.Models.ItemRow and is used throughout the UI to avoid duplicate types.
 
-        private readonly System.Collections.ObjectModel.ObservableCollection<ModuloDespacho.Models.ItemRow> _items = new System.Collections.ObjectModel.ObservableCollection<ModuloDespacho.Models.ItemRow>();
+        // Alias a la única colección utilizada por la tabla y Autorizar.
+        private System.Collections.ObjectModel.ObservableCollection<ItemRow> _items
+            => ((ViewModels.MainWindowViewModel)DataContext).Items;
 
         private void AttachCollectionHandlers()
         {
@@ -435,6 +390,7 @@ namespace ModuloDespacho
                         ir.PropertyChanged -= Item_PropertyChanged;
                 }
             }
+
             UpdateTotal();
         }
 
@@ -447,6 +403,8 @@ namespace ModuloDespacho
 
         private void CatalogListBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            if (DataContext is not ViewModels.MainWindowViewModel vm)
+                return;
             var sel = CatalogListBox.SelectedItem;
             if (sel == null) return;
 
@@ -473,7 +431,7 @@ namespace ModuloDespacho
                 return;
             }
 
-            var existing = System.Linq.Enumerable.FirstOrDefault(_items, it => it.Id == id);
+            var existing = System.Linq.Enumerable.FirstOrDefault(vm.Items, it => it.Id == id);
             if (existing != null)
             {
                 if (existing.Cantidad + 1 > stock)
@@ -483,8 +441,7 @@ namespace ModuloDespacho
                 else
                 {
                     existing.Cantidad += 1;
-                    var idx = _items.IndexOf(existing);
-                    _items[idx] = existing;
+
                 }
             }
             else
@@ -495,12 +452,11 @@ namespace ModuloDespacho
                 }
                 else
                 {
-                    _items.Add(new ItemRow { Id = id, Producto = name, PrecioUnitario = price, Cantidad = 1, Dto = 0 });
+                    vm.Items.Add(new ItemRow { Id = id, Producto = name, PrecioUnitario = price, Cantidad = 1, Dto = 0 });
                 }
             }
 
-            ItemsDataGrid.ItemsSource = null;
-            ItemsDataGrid.ItemsSource = _items;
+
             UpdateTotal();
         }
 
@@ -511,8 +467,7 @@ namespace ModuloDespacho
                 if (_items.Contains(row))
                 {
                     _items.Remove(row);
-                    ItemsDataGrid.ItemsSource = null;
-                    ItemsDataGrid.ItemsSource = _items;
+
                     UpdateTotal();
                 }
             }
@@ -536,8 +491,9 @@ namespace ModuloDespacho
 
         private void UpdateTotal()
         {
+            if (DataContext is not ViewModels.MainWindowViewModel vm) return;
             decimal total = 0;
-            foreach (var it in _items)
+            foreach (var it in vm.Items)
                 total += it.Subtotal;
             // calcular subtotal, flete (5%) y total general
             decimal subtotal = total;
@@ -560,6 +516,7 @@ namespace ModuloDespacho
             catch { rate = 0.10m; }
             decimal flete = Math.Round(subtotal * rate, 2);
             decimal totalGeneral = subtotal + flete;
+            vm.RecalculateTotals(rate);
 
             // actualizar TextBlocks nombrados en XAML (nuevos names)
             if (this.FindName("SubtotalTb") is System.Windows.Controls.TextBlock st)
@@ -570,8 +527,8 @@ namespace ModuloDespacho
                 tb.Text = $"S/{totalGeneral:0.00}";
         }
 
-        
-        private T FindVisualChildByName<T>(DependencyObject parent, string name) where T: DependencyObject
+
+        private T FindVisualChildByName<T>(DependencyObject parent, string name) where T : DependencyObject
         {
             if (parent == null) return null;
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
@@ -586,13 +543,14 @@ namespace ModuloDespacho
 
         private void ItemsDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-           
+
             Dispatcher.BeginInvoke(new System.Action(() =>
             {
-                ItemsDataGrid.ItemsSource = null;
-                ItemsDataGrid.ItemsSource = _items;
+
                 UpdateTotal();
             }));
         }
+
+
     }
 }
